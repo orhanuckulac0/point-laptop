@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired, URL
 class AddCafeForm(FlaskForm):
     cafe_name = StringField("Cafe Name", validators=[DataRequired()])
     cafe_address = StringField("Cafe Address", validators=[DataRequired()])
-    hours = StringField("Hours", validators=[DataRequired()])  # there as URL() too
+    hours = StringField("Hours", validators=[DataRequired()])
     avg_price = StringField("Avg Coffee Price", validators=[DataRequired()])
     address_link = StringField("Caffe Address Link", validators=[DataRequired(), URL()])
     image_link = StringField("Caffe Image Link", validators=[DataRequired(), URL()])
