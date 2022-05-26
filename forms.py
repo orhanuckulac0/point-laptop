@@ -3,7 +3,6 @@ from wtforms import StringField, SubmitField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, URL
 
 
-# WTForm
 class AddCafeForm(FlaskForm):
     cafe_name = StringField("Cafe Name", validators=[DataRequired()])
     cafe_address = StringField("Cafe Address", validators=[DataRequired()])
