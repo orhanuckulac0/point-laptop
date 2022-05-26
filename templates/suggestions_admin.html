@@ -1,0 +1,39 @@
+{% block content %}
+{% include "header.html" %}
+
+<div class="container-fluid text-center align-items-center ">
+    {% for suggestion in suggestion_list: %}
+
+    <div class="row d-flex justify-content-center text-center p-3">
+        <!-- start loop here for every cafe in that particular city -->
+        <div class="col-md-6 col-sm-8">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ suggestion.image_link }}" class="card-img-top" alt="...">
+              <h5 class="card-header">{{ suggestion.cafe_name}}</h5>
+              <div class="card-body">
+              <p><i class="bi bi-clock"> {{ suggestion.hours}}</i></p>
+              <p><i class="bi bi-cash"></i> {{ suggestion.avg_price }}</p>
+              <p><i class="bi bi-geo-fill"> {{ suggestion.cafe_address }}</i></p>
+              <a href="{{ suggestion.address_link }}" target="_blank" class="btn btn-primary mb-2">Address Link</a></br>
+              <a href="{{ url_for('add_suggestions_to_db', id=suggestion.id)}}" class="btn btn-dark mb-2"> Add to DB </a>
+              <a href="{{ url_for('delete_suggestion', id=suggestion.id)}}" class="btn btn-dark"> Delete Suggestion </a>
+
+              </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

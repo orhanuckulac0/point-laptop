@@ -1,0 +1,33 @@
+
+{% block content %}
+{% include "header.html" %}
+
+
+<h3 class="container-fluid text-center align-items-center pt-2" style="color: gray;"> If you want to suggest a cafe, you need to register and log in</h3>
+<div class="container">
+    <div class="row">
+        {% for cafe in displayed_cafes: %}
+
+        <div class="col-lg-4 d-flex justify-content-center mt-5 align-items-stretch pb-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ cafe.image_link }}" class="card-img-top" alt="...">
+                <h5 class="card-header">{{ cafe.cafe_name }}</h5>
+                <div class="card-body">
+                <p><i class="bi bi-clock"></i> <b>Opening-Closing Hours:</b> {{ cafe.hours }}</p>
+                <p><i class="bi bi-cash"></i> <b>Average Coffee Price:</b> {{ cafe.avg_price }}</p>
+                <p><i class="bi bi-geo-fill"></i> <b>Cafe Adress:</b> {{ cafe.cafe_address }}</p>
+                <a href="{{ cafe.address_link }}" target="_blank" class="btn btn-primary">Map Location</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
