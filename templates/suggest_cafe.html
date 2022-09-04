@@ -2,11 +2,21 @@
 {% include "header.html" %}
 
 <div class="container-fluid text-center align-items-center">
+
     <div class="d-flex justify-content-center text-center pt-5 mt-5">
 
-
-    <form action="{{ url_for('suggest_cafe') }}" method="post">
-
+    <form action="{{ url_for('suggest_cafe') }}" method="post" novalidate>
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <ul>
+                  {% for message in messages %}
+                   <li style="color: red;">
+                          <strong>{{ message }}</strong>
+                      </li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endwith %}
       <!-- Cafe Name input -->
       <div class="form-outline mb-4">
         <input type="text" name="cafe_name" placeholder="Cafe Name"/>
@@ -24,7 +34,7 @@
 
       <!-- Price input -->
       <div class="form-outline mb-4">
-        <input type="text" name="avg_price" placeholder="Average Coffee Price"/>
+        <input type="number" name="avg_price" placeholder="Average Coffee Price"/>
       </div>
 
       <!-- Cafe Address Link input -->
