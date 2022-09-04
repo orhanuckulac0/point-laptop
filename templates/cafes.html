@@ -6,6 +6,17 @@
 <h3 class="container-fluid text-center align-items-center pt-2" style="color: gray;"> If you want to suggest a cafe, you need to register and log in</h3>
 <div class="container">
     <div class="row">
+          {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <ul>
+                  {% for message in messages %}
+                   <li style="color: red;">
+                          <strong>{{ message }}</strong>
+                      </li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endwith %}
         {% for cafe in displayed_cafes: %}
 
         <div class="col-lg-4 d-flex justify-content-center mt-5 align-items-stretch pb-2">
@@ -15,8 +26,11 @@
                 <div class="card-body">
                 <p><i class="bi bi-clock"></i> <b>Opening-Closing Hours:</b> {{ cafe.hours }}</p>
                 <p><i class="bi bi-cash"></i> <b>Average Coffee Price:</b> {{ cafe.avg_price }}</p>
-                <p><i class="bi bi-geo-fill"></i> <b>Cafe Adress:</b> {{ cafe.cafe_address }}</p>
+                <p><i class="bi bi-geo-fill"></i> <b>Cafe Address:</b> {{ cafe.cafe_address }}</p>
                 <a href="{{ cafe.address_link }}" target="_blank" class="btn btn-primary">Map Location</a>
+                {% if current_user.id == 1 %}
+                <a href="{{url_for('delete', cafe_id=cafe.id)}}" target="_blank" class="btn btn-danger">Delete</a>
+                {% endif %}
               </div>
             </div>
         </div>
